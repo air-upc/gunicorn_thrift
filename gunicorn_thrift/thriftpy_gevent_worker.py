@@ -86,6 +86,8 @@ class GeventThriftPyWorker(GeventWorker, ProcessorMixin):
                 self.log.debug('%r: %r', addr, e)
             elif e.args[0] == errno.EPIPE:
                 self.log.warning('%r: %r', addr, e)
+            elif e.message == "timed out":
+                self.log.warning('%r: %r', addr, e)
             else:
                 self.log.exception('%r: %r', addr, e)
         except Exception as e:
